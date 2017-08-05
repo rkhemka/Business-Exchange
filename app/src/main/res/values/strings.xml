@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Business Exchange</string>
+    <string name="app_name">test</string>
+
+    <string-array name="professions">
+        <item>Accountants</item>
+        <item>Beauticians</item>
+        <item>Carpenters</item>
+        <item>Cleaners</item>
+        <item>Dentists</item>
+        <item>Electricians</item>
+        <item>Gardeners</item>
+    </string-array>
 </resources>
