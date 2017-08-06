@@ -8,6 +8,7 @@
     android:weightSum="1"
     tools:context=".data.AddToDoFragment">
 
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"

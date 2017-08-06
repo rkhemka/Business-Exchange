@@ -6,6 +6,8 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+
+
     <EditText
         android:id="@+id/response_to_edit_reply"
         android:layout_width="match_parent"
