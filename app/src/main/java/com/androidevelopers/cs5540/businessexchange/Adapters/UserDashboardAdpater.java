@@ -2,6 +2,7 @@ package com.androidevelopers.cs5540.businessexchange.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import com.androidevelopers.cs5540.businessexchange.R;
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
-import com.firebase.client.Firebase;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -18,8 +19,10 @@ import java.util.ArrayList;
  * Created by rohangoel on 8/4/17.
  */
 
+// Adapter for User Dash Board.. List of Professionals will be Attached to Recycler View.
+
 public class UserDashboardAdpater extends RecyclerView.Adapter<UserDashboardAdpater.UserDashboardViewHolder> {
-    ArrayList<ProfessionalData> professionals = new ArrayList<ProfessionalData>();
+    ArrayList<ProfessionalData> professionals ;
     Context context;
     public UserDashboardAdpater(ArrayList<ProfessionalData> professionals, Context context){
         this.professionals=professionals;
@@ -27,7 +30,7 @@ public class UserDashboardAdpater extends RecyclerView.Adapter<UserDashboardAdpa
     }
     @Override
     public UserDashboardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context=parent.getContext();
+        context = parent.getContext();
         boolean shouldAttachToParentImmediately= false;
         LayoutInflater inflater=LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.user_dashboard_item, parent, shouldAttachToParentImmediately);
@@ -38,12 +41,17 @@ public class UserDashboardAdpater extends RecyclerView.Adapter<UserDashboardAdpa
     public void onBindViewHolder(UserDashboardViewHolder holder, int position) {
         holder.professionalName.setText(professionals.get(position).getFirstName()+" "+professionals.get(position).getLastName());
         holder.professionalProfession.setText(professionals.get(position).getProfession());
-        holder.professionalCity.setText(professionals.get(position).getCity());
+        holder.professionalCity.setText(professionals.get(position).getCity()+" , "+professionals.get(position).getState());
+        Picasso.with(context)
+                .load(professionals.get(position).getAvatar()).resize(120,120)
+                .into(holder.professionalImage);
     }
 
     @Override
     public int getItemCount() {
+        Log.i("size from adater: ", String.valueOf(professionals.size()));
         return professionals.size();
+
     }
 
     public class UserDashboardViewHolder extends RecyclerView.ViewHolder {

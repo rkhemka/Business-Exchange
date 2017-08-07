@@ -1,16 +1,18 @@
 package com.androidevelopers.cs5540.businessexchange;
 
+import android.content.Context;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
-import com.androidevelopers.cs5540.businessexchange.Adapters.UserDashboardAdpater;
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -19,13 +21,12 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Void> {
 
-    RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
-    RecyclerView.LayoutManager layoutManager;
-    private Button addDataButton;
-    private Button fetchDataButton;
+    private ProgressBar progressBar;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter userDashboardAdapter;
+    private RecyclerView.LayoutManager layoutManager;
     private ImageView mainScreenImage;
     private Firebase mRef;
     ArrayList<ProfessionalData> professionals = new ArrayList<ProfessionalData>();
@@ -33,36 +34,52 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        addDataButton =(Button) findViewById(R.id.add_data_button);
-//        fetchDataButton = (Button) findViewById(R.id.fetch_data_button);
-        mainScreenImage = (ImageView) findViewById(R.id.main_screen_image);
-        mainScreenImage.animate().alpha(0).setDuration(10000);
-
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
+        recyclerView = (RecyclerView) findViewById(R.id.user_dashboard_recycler);
         mRef = new Firebase("https://business-exchange-8a152.firebaseio.com/professionals_details");
+    }
 
-//        addDataButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Firebase mRefChild = mRef.child("Name");
-//                mRefChild.setValue("Rohan");
-//            }
-//        });
+    public Loader<Void> onCreateLoader(int id, final Bundle args) {
+        return new AsyncTaskLoader<Void>(this) {
 
-        mRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    ProfessionalData professionalData = ds.getValue(ProfessionalData.class);
-                    professionals.add(professionalData);
-                    Log.i("---------firstname", professionalData.getFirstName());
-                }
+            protected void onStartLoading() {
+                super.onStartLoading();
+                progressBar.setVisibility(View.VISIBLE);
             }
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
+            public Void loadInBackground() {
+                mRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            ProfessionalData professionalData = ds.getValue(ProfessionalData.class);
+                            professionals.add(professionalData);
+                        }
+                        Log.i("data from array list: ", professionals.get(0).getFirstName());
+                    }
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                    }
+                });
+                return null;
             }
-        });
+        };
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Void> loader, Void data) {
+        progressBar.setVisibility(View.GONE);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(userDashboardAdapter);
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Void> loader) {
+    }
 
 
 //    Inflate in Profession Activity
@@ -93,17 +110,4 @@ public class MainActivity extends AppCompatActivity {
 //    public void onNothingSelected(AdapterView<?> adapterView) {
 //
 //    }
-
-        recyclerView = (RecyclerView) findViewById(R.id.user_dashboard_recycler);
-        adapter = new UserDashboardAdpater(professionals, this);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-
-    }
-
-
-
-
 }

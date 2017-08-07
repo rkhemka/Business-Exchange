@@ -1,9 +1,5 @@
 package com.androidevelopers.cs5540.businessexchange.models;
 
-import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 /**
  * Created by rohangoel on 8/4/17.
  */
@@ -19,6 +15,7 @@ public class ProfessionalData{
     private String street;
     private String zipCode;
     private String profession;
+    private String avatar;
     private int id;
 
     public ProfessionalData(){
@@ -103,5 +100,13 @@ public class ProfessionalData{
 
     public void setProfession(String profession) {
         this.profession = profession;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
