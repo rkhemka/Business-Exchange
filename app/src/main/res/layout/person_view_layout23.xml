@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".models.ProfessionalData">
 
+
+
     <ImageView
         android:id="@+id/professional_image_item_view"
         android:layout_width="match_parent"
