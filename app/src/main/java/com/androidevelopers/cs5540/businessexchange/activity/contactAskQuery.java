@@ -28,6 +28,7 @@ public class contactAskQuery extends AppCompatActivity {
         CancelQuery=(Button) findViewById(R.id.contact_button_cancel);
 
 
+
     }
 
 }

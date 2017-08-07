@@ -10,11 +10,8 @@
     android:paddingTop="25dp"
     tools:context=".MainActivity">
 
-
-
-
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/login_screen_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -23,10 +20,10 @@
         android:textSize="35dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/business_exchange_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textview"
+        android:layout_below="@+id/login_screen_textview"
         android:layout_centerHorizontal="true"
         android:text="Bussiness Exchange"
         android:textColor="#ff7aff24"
@@ -40,21 +37,21 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/app_logo_image_view"
         android:layout_marginTop="46dp"
         android:focusable="true"
-        android:hint="Enter User-Name"
+        android:hint="username"
         android:textColorHighlight="#ff7eff15"
         android:textColorHint="#ffff25e6" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/app_logo_image_view"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/textView"
+        android:src="@drawable/mainscreen"
+        android:layout_below="@+id/business_exchange_textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
-        android:src="@drawable/mainscreen" />
+        android:layout_marginTop="28dp" />
 
     <EditText
         android:id="@+id/login_view_editText_Password"
@@ -66,7 +63,7 @@
         android:layout_alignRight="@+id/login_view_editText_UserName"
         android:layout_below="@+id/login_view_editText_UserName"
         android:ems="10"
-        android:hint="Password"
+        android:hint="password"
         android:inputType="textPassword"
         android:textColorHint="#ffff299f" />
 
@@ -76,12 +73,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="login"
+        android:layout_marginTop="19dp"
         android:layout_below="@+id/login_view_editText_Password"
-        android:layout_marginTop="30dp"
-        android:layout_toStartOf="@+id/textview"
-        android:layout_alignRight="@+id/textview"
-        android:layout_alignEnd="@+id/textview" />
+        android:layout_alignStart="@+id/business_exchange_textView"
+        android:layout_marginStart="52dp" />
 
+    <ProgressBar
+        android:id="@+id/login_progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/login_view_signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/login_view_button_login"
+        android:layout_marginStart="36dp"
+        android:layout_toEndOf="@+id/login_view_button_login"
+        android:onClick="signUp"
+        android:text="Sign Up" />
 
 
 </RelativeLayout>

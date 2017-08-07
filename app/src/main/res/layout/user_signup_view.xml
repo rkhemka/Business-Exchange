@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/user_textview_firstName"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="52dp"
+        android:text="First-Name" />
+
+    <TextView
+        android:id="@+id/user_textview_lastName"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_alignEnd="@+id/user_textview_firstName"
+        android:layout_below="@+id/user_textview_firstName"
+        android:layout_marginTop="41dp"
+        android:text="Last - Name" />
+
+    <TextView
+        android:id="@+id/user_textview_contact"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_alignEnd="@+id/user_textview_lastName"
+        android:layout_below="@+id/user_textview_lastName"
+        android:layout_marginTop="36dp"
+        android:text="Contact" />
+
+    <TextView
+        android:id="@+id/user_textview_emailId"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_alignStart="@+id/user_textview_contact"
+        android:layout_below="@+id/user_textview_contact"
+        android:layout_marginTop="33dp"
+        android:text="Email Address" />
+
+    <TextView
+        android:id="@+id/user_textview_password"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:layout_alignStart="@+id/user_textview_emailId"
+        android:layout_below="@+id/user_textview_emailId"
+        android:layout_marginTop="41dp"
+        android:text="Password" />
+
+    <EditText
+        android:id="@+id/user_editText_FirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/user_textview_lastName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="13dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/user_editText_lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/user_textview_lastName"
+        android:layout_alignBottom="@+id/user_textview_lastName"
+        android:layout_alignStart="@+id/user_editText_FirstName"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/user_editText_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/user_textview_emailId"
+        android:layout_alignStart="@+id/user_editText_lastName"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/user_editText_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/user_textview_password"
+        android:layout_alignEnd="@+id/user_editText_phone"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/user_editText_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/user_textview_password"
+        android:layout_alignStart="@+id/user_editText_email"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/user_editText_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_editText_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:text="Sign Up" />
+</RelativeLayout>

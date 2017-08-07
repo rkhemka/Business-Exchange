@@ -10,16 +10,33 @@ public class ProfessionalData{
     private String lastName;
     private String city;
     private String contact;
-    private String emailId;
+    private String emailAddress;
     private String state;
     private String street;
     private String zipCode;
     private String profession;
-    private String avatar;
+    private String imageUrl;
+    private String description;
     private int id;
 
     public ProfessionalData(){
 
+    }
+
+    public ProfessionalData(String firstName, String lastName, String city, String contact,
+                            String emailAddress, String state, String street, String zipCode,
+                            String profession, String imageUrl, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.contact = contact;
+        this.emailAddress = emailAddress;
+        this.state = state;
+        this.street = street;
+        this.zipCode = zipCode;
+        this.profession = profession;
+        this.imageUrl=imageUrl;
+        this.id = id;
     }
 
     public int getId() {
@@ -62,12 +79,12 @@ public class ProfessionalData{
         this.contact = contact;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setEmailAddress(String emailId) {
+        this.emailAddress = emailId;
     }
 
     public String getState() {
@@ -102,11 +119,19 @@ public class ProfessionalData{
         this.profession = profession;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

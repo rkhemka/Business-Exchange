@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/emailTextView"
                 android:layout_alignStart="@+id/emailTextView"
-                android:layout_alignTop="@+id/imageView"
+                android:layout_alignTop="@+id/app_logo_image_view"
                 android:paddingLeft="10dp"
                 android:text="TextView"
                 android:textSize="30sp" />
@@ -48,11 +48,11 @@
                 android:id="@+id/emailTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imageView"
+                android:layout_alignBottom="@+id/app_logo_image_view"
                 android:layout_marginLeft="11dp"
                 android:layout_marginStart="11dp"
-                android:layout_toEndOf="@+id/imageView"
-                android:layout_toRightOf="@+id/imageView"
+                android:layout_toEndOf="@+id/app_logo_image_view"
+                android:layout_toRightOf="@+id/app_logo_image_view"
                 android:paddingLeft="10dp"
                 android:text="TextView"
                 android:textSize="18sp" />

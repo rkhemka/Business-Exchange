@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -27,7 +26,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/professional_email"
+        android:id="@+id/profession_id_me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -37,12 +36,12 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/professional_number"
+        android:id="@+id/profession_street"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/professional_email"
+        android:layout_below="@+id/profession_id_me"
         android:text="Street"
 
         android:textSize="20sp" />
@@ -53,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/professional_number"
+        android:layout_below="@+id/profession_street"
         android:text="city and zip"
         android:textSize="20sp" />
 
@@ -81,6 +80,7 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:onClick="contactQuery"
         app:srcCompat="@drawable/contact_image" />
 
 </RelativeLayout>

@@ -12,7 +12,7 @@ import com.androidevelopers.cs5540.businessexchange.R;
  * Created by rajat on 8/5/2017.
  */
 
-public class cardProfessionalAreaAdapters {
+public class CardProfessionalAreaAdapters {
 
 
 }

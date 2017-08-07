@@ -24,7 +24,7 @@ public class contactToResponse extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        recyclerView= (RecyclerView) findViewById(R.id.recyclerViewOfContactToResponse);
+        //recyclerView= (RecyclerView) findViewById(R.id.recyclerViewOfContactToResponse);
         responseToUserQuery= (EditText) findViewById(R.id.response_to_edit_reply);
         responseToReply=(Button) findViewById(R.id.button_response_to_reply);
         responseToCancel= (Button) findViewById(R.id.button_response_to_cancel);
