@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/professional_image_item_view"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
         android:padding="15dp" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_toEndOf="@+id/professional_image_item_view"
         android:layout_toRightOf="@+id/professional_image_item_view"
         android:text="Name"
-        android:textSize="32sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/professional_profession_item_view"
