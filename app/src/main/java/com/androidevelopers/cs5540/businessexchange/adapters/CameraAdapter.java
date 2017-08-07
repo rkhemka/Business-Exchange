@@ -1,4 +1,4 @@
-package com.androidevelopers.cs5540.businessexchange.Adapters;
+package com.androidevelopers.cs5540.businessexchange.adapters;
 
 import android.Manifest;
 import android.content.Context;
@@ -215,7 +215,7 @@ public class CameraAdapter extends AppCompatActivity {
                         super.onCaptureCompleted(session, request, result);
                         //TODO Insert data in Database
 
-                        Toast.makeText(com.androidevelopers.cs5540.businessexchange.Adapters.CameraAdapter.this, "Images is stored AS:" + file, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(com.androidevelopers.cs5540.businessexchange.adapters.CameraAdapter.this, "Images is stored AS:" + file, Toast.LENGTH_SHORT).show();
                         createCameraPreview();
                     }
                 };
@@ -257,7 +257,7 @@ public class CameraAdapter extends AppCompatActivity {
                     }
                     @Override
                     public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
-                        Toast.makeText(com.androidevelopers.cs5540.businessexchange.Adapters.CameraAdapter.this, "Configuration change", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(com.androidevelopers.cs5540.businessexchange.adapters.CameraAdapter.this, "Configuration change", Toast.LENGTH_SHORT).show();
                     }
                 }, null);
             } catch (CameraAccessException e) {
@@ -275,7 +275,7 @@ public class CameraAdapter extends AppCompatActivity {
                 imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
                 // Add permission for camera and let user grant the permission
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(com.androidevelopers.cs5540.businessexchange.Adapters.CameraAdapter.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CAMERA_PERMISSION);
+                    ActivityCompat.requestPermissions(com.androidevelopers.cs5540.businessexchange.adapters.CameraAdapter.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CAMERA_PERMISSION);
                     return;
                 }
                 manager.openCamera(cameraId, stateCallback, null);
@@ -310,7 +310,7 @@ public class CameraAdapter extends AppCompatActivity {
             if (requestCode == REQUEST_CAMERA_PERMISSION) {
                 if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                     // close the app
-                    Toast.makeText(com.androidevelopers.cs5540.businessexchange.Adapters.CameraAdapter.this, "Sorry!!!, you can't use this app without granting permission", Toast.LENGTH_LONG).show();
+                    Toast.makeText(com.androidevelopers.cs5540.businessexchange.adapters.CameraAdapter.this, "Sorry!!!, you can't use this app without granting permission", Toast.LENGTH_LONG).show();
                     finish();
                 }
             }

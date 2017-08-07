@@ -1,6 +1,5 @@
 package com.androidevelopers.cs5540.businessexchange;
 
-import android.content.Context;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
@@ -8,12 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.androidevelopers.cs5540.businessexchange.Adapters.UserDashboardAdpater;
+import com.androidevelopers.cs5540.businessexchange.adapters.UserDashboardAdpater;
 import com.androidevelopers.cs5540.businessexchange.dbUtils.DbUrls;
 import com.androidevelopers.cs5540.businessexchange.dbUtils.FirebaseHelper;
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;

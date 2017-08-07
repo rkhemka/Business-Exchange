@@ -10,7 +10,7 @@
     import android.widget.ImageButton;
     import android.widget.TextView;
 
-    import com.androidevelopers.cs5540.businessexchange.Adapters.CameraAdapter;
+    import com.androidevelopers.cs5540.businessexchange.adapters.CameraAdapter;
     import com.androidevelopers.cs5540.businessexchange.R;
     import com.androidevelopers.cs5540.businessexchange.dbUtils.DbUrls;
     import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;

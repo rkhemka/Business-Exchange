@@ -1,4 +1,4 @@
-package com.androidevelopers.cs5540.businessexchange.Adapters;
+package com.androidevelopers.cs5540.businessexchange.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidevelopers.cs5540.businessexchange.R;
-import com.androidevelopers.cs5540.businessexchange.activity.PersonViewLayout;
+import com.androidevelopers.cs5540.businessexchange.activity.ProfessionalViewLayout;
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
 import com.squareup.picasso.Picasso;
 import com.google.gson.Gson;
@@ -81,7 +81,7 @@ public class UserDashboardAdpater extends RecyclerView.Adapter<UserDashboardAdpa
             ProfessionalData professionalData = this.professionals.get(position);
             Gson gS = new Gson();
             String target = gS.toJson(professionalData);
-            Intent intent = new Intent(this.context, PersonViewLayout.class);
+            Intent intent = new Intent(this.context, ProfessionalViewLayout.class);
             intent.putExtra("professionalDataObject", target);
             this.context.startActivity(intent);
         }
