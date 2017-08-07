@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textview_firstName"
         android:layout_width="75dp"
         android:layout_height="25dp"
         android:layout_marginLeft="29dp"
@@ -20,20 +20,20 @@
         android:id="@+id/sign_up_first_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView"
+        android:layout_alignBottom="@+id/textview_firstName"
         android:layout_marginLeft="27dp"
         android:layout_marginStart="27dp"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textview_firstName"
+        android:layout_toRightOf="@+id/textview_firstName"
         android:ems="10"
         android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textview_lastName"
         android:layout_width="75dp"
         android:layout_height="25dp"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
+        android:layout_alignLeft="@+id/textview_firstName"
+        android:layout_alignStart="@+id/textview_firstName"
         android:layout_below="@+id/sign_up_first_Name"
         android:layout_marginTop="33dp"
         android:layout_toLeftOf="@+id/sign_up_first_Name"
@@ -41,34 +41,34 @@
         android:text="LastName" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textview_profession"
         android:layout_width="75dp"
         android:layout_height="25dp"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textview_lastName"
+        android:layout_alignStart="@+id/textview_lastName"
+        android:layout_below="@+id/textview_lastName"
         android:layout_marginTop="29dp"
         android:text="Profession" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textview_city"
         android:layout_width="75dp"
         android:layout_height="25dp"
-        android:layout_alignEnd="@+id/textView4"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"
-        android:layout_below="@+id/textView4"
+        android:layout_alignEnd="@+id/textview_profession"
+        android:layout_alignLeft="@+id/textview_profession"
+        android:layout_alignRight="@+id/textview_profession"
+        android:layout_alignStart="@+id/textview_profession"
+        android:layout_below="@+id/textview_profession"
         android:layout_marginTop="33dp"
         android:text="City" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textview_emailId"
         android:layout_width="75dp"
         android:layout_height="35dp"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignStart="@+id/textView5"
-        android:layout_below="@+id/textView5"
+        android:layout_alignLeft="@+id/textview_city"
+        android:layout_alignStart="@+id/textview_city"
+        android:layout_below="@+id/textview_city"
         android:layout_marginTop="27dp"
         android:text="Email Address" />
 
@@ -76,7 +76,7 @@
         android:id="@+id/sign_up_last_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView4"
+        android:layout_above="@+id/textview_profession"
         android:layout_alignLeft="@+id/sign_up_first_Name"
         android:layout_alignStart="@+id/sign_up_first_Name"
         android:ems="10"
@@ -86,7 +86,7 @@
         android:id="@+id/sign_up_profession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView5"
+        android:layout_above="@+id/textview_city"
         android:layout_alignLeft="@+id/sign_up_last_Name"
         android:layout_alignStart="@+id/sign_up_last_Name"
         android:ems="10"
@@ -96,7 +96,7 @@
         android:id="@+id/sign_up_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView6"
+        android:layout_above="@+id/textview_emailId"
         android:layout_alignLeft="@+id/sign_up_profession"
         android:layout_alignStart="@+id/sign_up_profession"
         android:ems="10"
@@ -106,19 +106,19 @@
         android:id="@+id/sign_up_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignBottom="@+id/textview_emailId"
         android:layout_alignLeft="@+id/sign_up_city"
         android:layout_alignStart="@+id/sign_up_city"
         android:ems="10"
         android:inputType="textEmailAddress" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textview_picture"
         android:layout_width="75dp"
         android:layout_height="35dp"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/textview_emailId"
+        android:layout_alignStart="@+id/textview_emailId"
+        android:layout_below="@+id/textview_emailId"
         android:layout_marginTop="21dp"
         android:text="Upload Picture" />
 
@@ -131,12 +131,12 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/textview_contact"
         android:layout_width="75dp"
         android:layout_height="25dp"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10"
-        android:layout_below="@+id/textView10"
+        android:layout_alignLeft="@+id/textview_picture"
+        android:layout_alignStart="@+id/textview_picture"
+        android:layout_below="@+id/textview_picture"
         android:layout_marginTop="31dp"
         android:text="Contact" />
 
@@ -144,7 +144,7 @@
         android:id="@+id/sign_up_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView11"
+        android:layout_alignBottom="@+id/textview_contact"
         android:layout_alignStart="@+id/sign_up_take_picture"
         android:ems="10"
         android:inputType="number" />
@@ -153,25 +153,25 @@
         android:id="@+id/sign_up_take_picture"
         android:layout_width="125dp"
         android:layout_height="35dp"
-        android:layout_above="@+id/textView11"
+        android:layout_above="@+id/textview_contact"
         android:layout_alignEnd="@+id/sign_up_email"
         android:layout_alignStart="@+id/sign_up_email"
-        android:layout_alignTop="@+id/textView10"
+        android:layout_alignTop="@+id/textview_picture"
         app:srcCompat="@drawable/images" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textview_street"
         android:layout_width="75dp"
         android:layout_height="25dp"
-        android:layout_alignStart="@+id/textView11"
-        android:layout_below="@+id/textView11"
+        android:layout_alignStart="@+id/textview_contact"
+        android:layout_below="@+id/textview_contact"
         android:layout_marginTop="12dp"
         android:text="Street" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView8"
+        android:layout_alignBottom="@+id/textview_street"
         android:layout_alignStart="@+id/sign_up_contact"
         android:layout_below="@+id/sign_up_contact"
         android:ems="10"
@@ -179,11 +179,11 @@
         android:id="@+id/sign_up_street" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textview_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView8"
-        android:layout_below="@+id/textView8"
+        android:layout_alignStart="@+id/textview_street"
+        android:layout_below="@+id/textview_street"
         android:layout_marginTop="12dp"
         android:text="State" />
 
@@ -191,27 +191,18 @@
         android:id="@+id/sign_up_state"
         android:layout_width="55dp"
         android:layout_height="20dp"
-        android:layout_alignBottom="@+id/textView9"
+        android:layout_alignBottom="@+id/textview_state"
         android:layout_alignStart="@+id/sign_up_button"
         android:ems="10"
         android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/textViewofZipCode"
+        android:id="@+id/sign_up_my_zip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/sign_up_state"
         android:layout_toEndOf="@+id/sign_up_button"
         android:text="ZipCode" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="55dp"
-        android:layout_height="15dp"
-        android:ems="10"
-        android:inputType="number"
-        android:layout_alignBottom="@+id/textView12"
-        android:layout_alignEnd="@+id/sign_up_street" />
 
     <EditText
         android:id="@+id/signup_View_ZipCode"

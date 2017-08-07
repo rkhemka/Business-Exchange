@@ -1,6 +1,5 @@
-apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
@@ -40,8 +39,10 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:11.0.4'
     compile 'com.firebase:firebase-client-android:2.5.0'
     compile 'com.android.support:recyclerview-v7:26.+'
-    compile 'com.google.firebase:firebase-core:9.2.0'                        // this line must be included to integrate with Firebase
-    compile 'com.google.firebase:firebase-messaging:9.2.0'                   // this line must be included to use FCM
+    compile 'com.google.firebase:firebase-core:9.2.0'
+    // this line must be included to integrate with Firebase
+    compile 'com.google.firebase:firebase-messaging:9.2.0'
+    // this line must be included to use FCM
     compile 'com.google.android.gms:play-services-location:11.0.4'
     compile 'com.google.android.gms:play-services-places:11.0.4'
 

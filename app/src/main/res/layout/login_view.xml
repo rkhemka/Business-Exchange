@@ -23,7 +23,7 @@
         android:textSize="35dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textview_firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview"
@@ -51,7 +51,7 @@
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textview_firstName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:src="@drawable/mainscreen" />
