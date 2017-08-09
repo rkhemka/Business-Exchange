@@ -1,13 +1,16 @@
     package com.androidevelopers.cs5540.businessexchange.activity;
 
     import android.content.Intent;
+    import android.graphics.Bitmap;
     import android.os.Bundle;
+    import android.provider.MediaStore;
     import android.support.v7.app.AppCompatActivity;
     import android.util.Log;
     import android.view.View;
     import android.widget.Button;
     import android.widget.EditText;
     import android.widget.ImageButton;
+    import android.widget.ImageView;
     import android.widget.TextView;
 
     import com.androidevelopers.cs5540.businessexchange.adapters.CameraAdapter;
@@ -42,7 +45,7 @@
         private EditText professionEditText;
         private EditText cityEditText;
         private EditText emailAddressEditText;
-        private ImageButton clickImage;
+        private ImageView clickMe;
         private EditText contactEditText;
         private Button Signup;
         private EditText streetEditText;
@@ -63,7 +66,7 @@
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.sign_up_view);
+            setContentView(R.layout.professional_sign_up);
             //TODO 2 Inserting signup details into database by fetching the max(id) from Database and inserting
             db = FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseUrls.BASE_URL);
             textViewFirstName = (TextView) findViewById(R.id.signup_first_name_text_view);
@@ -81,7 +84,7 @@
             professionEditText = (EditText) findViewById(R.id.sign_up_profession_edit_text);
             cityEditText = (EditText) findViewById(R.id.sign_up_city_edit_text);
             emailAddressEditText = (EditText) findViewById(R.id.sign_up_email_edit_text);
-            clickImage = (ImageButton) findViewById(R.id.sign_up_take_picture);
+            clickMe=(ImageView) findViewById(R.id.sign_up_professional_Image);
             contactEditText = (EditText) findViewById(R.id.sign_up_contact_edit_text);
             Signup = (Button) findViewById(R.id.sign_up_button);
             streetEditText = (EditText) findViewById(R.id.sign_up_street_edit_text);
@@ -120,10 +123,22 @@
             return id++;
         }
 
-        void openCamera(View view){
-            Intent intent= new Intent(this, CameraAdapter.class);
-            this.startActivity(intent);
+        public void camera(View view){
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, 1);
+            }
         }
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            if (requestCode == 1 && resultCode == RESULT_OK) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                clickMe.setImageBitmap(imageBitmap);
+            }
+        }
+
 
         void addUser(View view){
             firstName = firstNameEditText.getText().toString();

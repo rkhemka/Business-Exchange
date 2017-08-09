@@ -2,7 +2,9 @@ package com.androidevelopers.cs5540.businessexchange.adapters;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -20,6 +22,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +33,7 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.androidevelopers.cs5540.businessexchange.R;
@@ -51,7 +55,7 @@ public class CameraAdapter extends AppCompatActivity {
 
 
         private static final String TAG = "Camera Object";
-        private ImageButton takePictureButton;
+        private ImageView clickMe;
         private TextureView textureView;
         private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
         static {
@@ -75,24 +79,12 @@ public class CameraAdapter extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
-
-
-
-
-
-            setContentView(R.layout.activity_main);
-
+            clickMe=(ImageView) findViewById(R.id.sign_up_professional_Image);
+            setContentView(R.layout.professional_sign_up);
             assert textureView != null;
             textureView.setSurfaceTextureListener(textureListener);
-            takePictureButton = (ImageButton) findViewById(R.id.sign_up_take_picture);
-            assert takePictureButton != null;
-            takePictureButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    takePicture();
-                }
-            });
+            assert clickMe != null;
+
         }
         TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
             @Override
@@ -264,7 +256,23 @@ public class CameraAdapter extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        private void openCamera() {
+         public void camera(View view){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, 1);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            clickMe.setImageBitmap(imageBitmap);
+        }
+    }
+
+    private void openCamera() {
             CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
             Log.e(TAG, "is camera open");
             try {

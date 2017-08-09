@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/sign_up_professional_Image"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_toStartOf="@+id/sign_up_professional_signUpButton"
+        android:onClick="camera" />
+
+    <EditText
+        android:id="@+id/sign_up_professional_firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="First Name"
+        android:inputType="textPersonName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/sign_up_professional_last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/sign_up_professional_firstName"
+        android:layout_below="@+id/sign_up_professional_firstName"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Last Name"
+        android:inputType="textPersonName" />
+
+    <EditText
+android:id="@+id/sign_up_professional_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Street"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/sign_up_professional_Image"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/sign_up_professional_state"
+        android:layout_width="95dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="State"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/sign_up_professional_street"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/sign_up_professional_city"
+        android:layout_width="95dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="City"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/sign_up_professional_street"
+        android:layout_toStartOf="@+id/sign_up_professional_profession"
+        android:layout_alignBottom="@+id/sign_up_professional_state" />
+
+    <EditText
+        android:id="@+id/sign_up_professional_zipcode"
+        android:layout_width="95dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Zip Code"
+        android:inputType="textPersonName"
+        android:layout_alignBaseline="@+id/sign_up_professional_city"
+        android:layout_alignBottom="@+id/sign_up_professional_city"
+        android:layout_alignStart="@+id/sign_up_professional_profession"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/sign_up_professional_contact_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Contact Number"
+        android:inputType="phone"
+        android:layout_below="@+id/sign_up_professional_state"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:id="@+id/sign_up_professional_description"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="Email Address"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/sign_up_professional_contact_number"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/sign_up_professional_signUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/sign_up_professional_profession" />
+
+    <EditText
+        android:id="@+id/sign_up_professional_profession"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Profession"
+        android:inputType="textPersonName"
+        android:layout_alignBaseline="@+id/sign_up_professional_contact_number"
+        android:layout_alignBottom="@+id/sign_up_professional_contact_number"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sign_up_professional_signUpButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/sign_up_professional_description"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:hint="describe about your @string/common_google_play_services_enable_button"
+        android:inputType="textMultiLine" />
+
+</RelativeLayout>

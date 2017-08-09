@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.androidevelopers.cs5540.businessexchange.R;
 
@@ -16,15 +17,15 @@ import com.androidevelopers.cs5540.businessexchange.R;
 
 public class LoginOptionView extends AppCompatActivity{
 
-    ImageView professionalLoginImageView;
-    ImageView userLoginImageView;
+    TextView professionalLoginImageView;
+    TextView userLoginImageView;
     Context context;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_option_view);
-        professionalLoginImageView = (ImageView) findViewById(R.id.professional_login_image_view);
-        userLoginImageView = (ImageView) findViewById((R.id.user_login_image_view));
+        professionalLoginImageView = (TextView) findViewById(R.id.professional_login_text_view);
+        userLoginImageView = (TextView) findViewById(R.id.user_login_text_view);
         context=this;
     }
 

@@ -48,7 +48,6 @@ public class FirebaseHelper {
 
     //IMPLEMENT FETCH DATA AND FILL ARRAY LIST
 
-
     private void fetchLoginData(DataSnapshot dataSnapshot)
     {
         loginList.clear();
@@ -58,7 +57,6 @@ public class FirebaseHelper {
             loginList.add(credential);
         }
     }
-
     //RETRIEVE
 
     public ArrayList<LoginData> retrieveLoginList()

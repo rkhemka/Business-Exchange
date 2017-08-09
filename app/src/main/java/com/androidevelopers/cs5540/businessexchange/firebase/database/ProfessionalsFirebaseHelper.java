@@ -25,7 +25,7 @@ public class ProfessionalsFirebaseHelper {
         this.professionals = professionals;
     }
 
-    public Boolean save(ProfessionalData professionalData)
+    public Boolean saveData(ProfessionalData professionalData)
     {
         Boolean saved;
         if(professionalData==null) {
@@ -53,19 +53,23 @@ public class ProfessionalsFirebaseHelper {
         }
     }
 
-    public ArrayList<ProfessionalData> retrieveData()
-    {
+    public void retrieveData() {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 fetchData(dataSnapshot);
+                retrieve(professionals);
                 Log.i("retrieve method : ", professionals.get(0).getFirstName());
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
 
+    public ArrayList<ProfessionalData> retrieve(ArrayList<ProfessionalData> professionals){
         return professionals;
     }
+
 }

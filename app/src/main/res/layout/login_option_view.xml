@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
-    <ImageButton
-        android:id="@+id/professional_login_image_view"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="selectLogin"
-        app:srcCompat="@drawable/professional_login_image"
-        android:tag="0"/>
-
-    <ImageButton
-        android:id="@+id/user_login_image_view"
-        android:layout_width="match_parent"
-        android:layout_height="285dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/professional_login_image_view"
-        android:onClick="selectLogin"
-        app:srcCompat="@drawable/user_login_image"
-        android:tag="1"/>
+        android:layout_alignParentTop="true"
+        android:background="#66bb6a"
+        android:paddingBottom="8sp"
+        android:paddingTop="8sp"
+        android:text="Who You Are ?"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/professional_login_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:background="#f5f5f5"
+        android:clickable="true"
+        android:paddingBottom="96sp"
+        android:paddingTop="96sp"
+        android:text="Service Provider"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#6b9b37" />
+
+    <TextView
+        android:id="@+id/user_login_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f5f5f5"
+        android:clickable="true"
+        android:paddingBottom="96sp"
+        android:paddingTop="96sp"
+        android:text="Consumer"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+</LinearLayout>

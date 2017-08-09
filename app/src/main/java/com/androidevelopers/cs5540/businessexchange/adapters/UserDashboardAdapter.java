@@ -70,13 +70,14 @@ public class UserDashboardAdapter extends RecyclerView.Adapter<UserDashboardAdap
         ArrayList<ProfessionalData> professionals = new ArrayList<>();
         Context context;
         public UserDashboardViewHolder(View itemView, Context context, ArrayList<ProfessionalData> professionals) {
-            super(itemView);
+            super(itemView);;
             this.context=context;
             this.professionals=professionals;
             professionalImage= (ImageView) itemView.findViewById(R.id.professional_image_item_view);
             professionalName= (TextView) itemView.findViewById(R.id.professional_name_item_view);
             professionalCity= (TextView) itemView.findViewById(R.id.professional_city_item_view);
             professionalProfession= (TextView) itemView.findViewById(R.id.professional_profession_item_view);
+            itemView.setOnClickListener(this);
         }
 
         @Override

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.androidevelopers.cs5540.businessexchange.BaseActivity;
 import com.androidevelopers.cs5540.businessexchange.NavigationActivity;
 import com.androidevelopers.cs5540.businessexchange.R;
 import com.androidevelopers.cs5540.businessexchange.adapters.UserDashboardAdapter;
@@ -17,8 +18,11 @@ import com.androidevelopers.cs5540.businessexchange.dbUtils.FirebaseHelper;
 import com.androidevelopers.cs5540.businessexchange.firebase.database.FirebaseUrls;
 import com.androidevelopers.cs5540.businessexchange.firebase.database.ProfessionalsFirebaseHelper;
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -27,7 +31,7 @@ import java.util.ArrayList;
  * Created by rajat on 8/7/2017.
  */
 
-public class UserDashboard extends AppCompatActivity implements UserDashboardAdapter.UserDashboardItemClickListener {
+public class UserDashboard extends BaseActivity implements UserDashboardAdapter.UserDashboardItemClickListener {
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -47,13 +51,19 @@ public class UserDashboard extends AppCompatActivity implements UserDashboardAda
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.user_dashboard_recycler);
         mRef = FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseUrls.BASE_URL+FirebaseUrls.PROFESSIONAL_DETAILS);
-        //name = getIntent().getStringExtra("name");
-        //userId = getIntent().getStringExtra("userId");
-        professionalsFirebaseHelper = new ProfessionalsFirebaseHelper(mRef,professionals);
-        userId = "0";
-        name="Rohan";
-        Log.i("Activity started from:", "user dashboard");
-        load();
+        name = getIntent().getStringExtra("name");
+        userId = getIntent().getStringExtra("userId");
+
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                fetchData(dataSnapshot);
+                load(professionals);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     public void onItemClick(int clickedItemIndex) {
@@ -68,8 +78,14 @@ public class UserDashboard extends AppCompatActivity implements UserDashboardAda
         this.startActivity(intent);
     }
 
-    public void load(){
-        professionals=professionalsFirebaseHelper.retrieveData();
+    private void fetchData(DataSnapshot dataSnapshot) {
+        professionals.clear();
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            ProfessionalData professionalData=ds.getValue(ProfessionalData.class);
+            professionals.add(professionalData);
+        }
+    }
+    public void load(ArrayList<ProfessionalData> professionals){
         Log.i("received data size", String.valueOf(professionals.size()));
         progressBar.setVisibility(View.GONE);
         userDashboardAdapter= new UserDashboardAdapter(professionals,this,this);

@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androidevelopers.cs5540.businessexchange.BaseActivity;
 import com.androidevelopers.cs5540.businessexchange.R;
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
 import com.google.gson.Gson;
@@ -17,7 +18,7 @@ import com.squareup.picasso.Picasso;
  * Created by rajat on 8/7/2017.
  */
 
-public class ProfessionalViewLayout extends AppCompatActivity {
+public class ProfessionalViewLayout extends BaseActivity {
 
     ImageView professionalImage;
     TextView nameTextView;

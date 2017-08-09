@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.androidevelopers.cs5540.businessexchange.BaseActivity;
 import com.androidevelopers.cs5540.businessexchange.R;
 import com.androidevelopers.cs5540.businessexchange.adapters.ProfessionalDashboardAdpater;
 import com.androidevelopers.cs5540.businessexchange.dbUtils.FirebaseHelper;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
  * Created by rohangoel on 8/6/17.
  */
 
-public class ProfessionalDashboard extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Void>, ProfessionalDashboardAdpater.ProfessionalDashboardItemClickListener{
+public class ProfessionalDashboard extends BaseActivity implements LoaderManager.LoaderCallbacks<Void>, ProfessionalDashboardAdpater.ProfessionalDashboardItemClickListener{
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter professionalDashboardAdapter;

@@ -22,6 +22,7 @@ import com.androidevelopers.cs5540.businessexchange.models.LoginData;
 
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
 import com.androidevelopers.cs5540.businessexchange.models.UserData;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,6 +55,7 @@ public class LoginView extends AppCompatActivity implements LoaderManager.Loader
     private String username;
     private String password;
     private String name;
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
