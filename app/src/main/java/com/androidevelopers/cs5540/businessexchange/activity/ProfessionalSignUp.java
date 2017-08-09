@@ -12,7 +12,7 @@
 
     import com.androidevelopers.cs5540.businessexchange.adapters.CameraAdapter;
     import com.androidevelopers.cs5540.businessexchange.R;
-    import com.androidevelopers.cs5540.businessexchange.dbUtils.DbUrls;
+    import com.androidevelopers.cs5540.businessexchange.firebase.database.FirebaseUrls;
     import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
     import com.google.firebase.database.DataSnapshot;
     import com.google.firebase.database.DatabaseError;
@@ -25,7 +25,7 @@
      * Created by rajat on 8/6/2017.
      */
 
-    public class SignUpView extends AppCompatActivity {
+    public class ProfessionalSignUp extends AppCompatActivity {
         int id;
         private String firstName;
         private String lastName;
@@ -63,9 +63,9 @@
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
+            setContentView(R.layout.sign_up_view);
             //TODO 2 Inserting signup details into database by fetching the max(id) from Database and inserting
-            db = FirebaseDatabase.getInstance().getReference(DbUrls.BASE_URL);
+            db = FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseUrls.BASE_URL);
             textViewFirstName = (TextView) findViewById(R.id.signup_first_name_text_view);
             textViewLastName = (TextView) findViewById(R.id.signup_last_name_text_view);
             textViewProfession=(TextView) findViewById(R.id.signup_profession_text_view);
@@ -92,10 +92,9 @@
 
         }
 
-
         public int fetchId(){
             int id=-1;
-            Query getIdQuery = db.child(DbUrls.PROFESSIONAL_LOGIN_DETAILS).orderByChild("id").limitToLast(1);
+            Query getIdQuery = db.child(FirebaseUrls.PROFESSIONAL_LOGIN_DETAILS).orderByChild("id").limitToLast(1);
             getIdQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -141,7 +140,8 @@
                             ,emailAddress,state, street,zipCode,profession,imageUrl,id);
 
             db.child("professionals-details").setValue(id,professionalData);
-            Intent intent = new Intent(this,ProfessionalDashboard.class);
+            Intent intent = new Intent(this,LoginView.class);
+            intent.putExtra("selectedId",0);
             this.startActivity(intent);
         }
 

@@ -9,7 +9,7 @@ public class ProfessionalData{
     private String firstName;
     private String lastName;
     private String city;
-    private String contact;
+    private String phone;
     private String emailAddress;
     private String state;
     private String street;
@@ -23,13 +23,13 @@ public class ProfessionalData{
 
     }
 
-    public ProfessionalData(String firstName, String lastName, String city, String contact,
+    public ProfessionalData(String firstName, String lastName, String city, String phone,
                             String emailAddress, String state, String street, String zipCode,
                             String profession, String imageUrl, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
-        this.contact = contact;
+        this.phone = phone;
         this.emailAddress = emailAddress;
         this.state = state;
         this.street = street;
@@ -71,12 +71,12 @@ public class ProfessionalData{
         this.city = city;
     }
 
-    public String getContact() {
-        return contact;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmailAddress() {

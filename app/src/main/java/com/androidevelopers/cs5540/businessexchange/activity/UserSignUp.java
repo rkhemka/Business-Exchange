@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.androidevelopers.cs5540.businessexchange.R;
-import com.androidevelopers.cs5540.businessexchange.dbUtils.DbUrls;
+import com.androidevelopers.cs5540.businessexchange.firebase.database.FirebaseUrls;
 import com.androidevelopers.cs5540.businessexchange.models.LoginData;
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
 import com.androidevelopers.cs5540.businessexchange.models.UserData;
@@ -51,7 +51,8 @@ public class UserSignUp extends AppCompatActivity{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        db = FirebaseDatabase.getInstance().getReference(DbUrls.BASE_URL);
+        setContentView(R.layout.user_signup_view);
+        db = FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseUrls.BASE_URL);
         firstNameEditText = (EditText) findViewById(R.id.user_editText_FirstName);
         lastNameEditText = (EditText) findViewById(R.id.user_editText_lastName);
         contactEditText = (EditText) findViewById(R.id.user_editText_phone);
@@ -68,7 +69,7 @@ public class UserSignUp extends AppCompatActivity{
 
     public int fetchId(){
         int id=-1;
-        Query getIdQuery = db.child(DbUrls.PROFESSIONAL_LOGIN_DETAILS).orderByChild("id").limitToLast(1);
+        Query getIdQuery = db.child(FirebaseUrls.PROFESSIONAL_LOGIN_DETAILS).orderByChild("id").limitToLast(1);
         getIdQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -94,7 +95,6 @@ public class UserSignUp extends AppCompatActivity{
         return id++;
     }
 
-
     void addUser(View view){
         firstName = firstNameEditText.getText().toString();
         lastName = lastNameEditText.getText().toString();
@@ -103,14 +103,11 @@ public class UserSignUp extends AppCompatActivity{
         password = passwordEditText.getText().toString();
         UserData userData =
                 new UserData(firstName,lastName,contact,emailAddress,id);
-
-        db.child("users-details").setValue(id,userData);
-
+        db.child(FirebaseUrls.USER_DETAILS).setValue(id,userData);
         LoginData loginData = new LoginData(id,emailAddress,password);
-        db.child("user-login-details").setValue(id,loginData);
-
-
-        Intent intent = new Intent(this,UserDashboard.class);
+        db.child(FirebaseUrls.USER_LOGIN_DETAILS).setValue(id,loginData);
+        Intent intent = new Intent(this,LoginView.class);
+        intent.putExtra("selectedId",1);
         this.startActivity(intent);
     }
 

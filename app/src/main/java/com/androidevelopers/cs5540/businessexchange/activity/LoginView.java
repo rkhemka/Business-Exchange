@@ -2,12 +2,11 @@ package com.androidevelopers.cs5540.businessexchange.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,12 +16,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidevelopers.cs5540.businessexchange.R;
-import com.androidevelopers.cs5540.businessexchange.dbUtils.DbUrls;
 import com.androidevelopers.cs5540.businessexchange.dbUtils.FirebaseHelper;
+import com.androidevelopers.cs5540.businessexchange.firebase.database.FirebaseUrls;
 import com.androidevelopers.cs5540.businessexchange.models.LoginData;
 
+import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
+import com.androidevelopers.cs5540.businessexchange.models.UserData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -33,6 +38,7 @@ import java.util.ArrayList;
 public class LoginView extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Void>{
 
     private DatabaseReference mRef;
+    private DatabaseReference db;
     private FirebaseHelper loginFirebaseHelper;
     private TextView loginMessageTextView;
     private ImageView appLogoImageView;
@@ -47,9 +53,11 @@ public class LoginView extends AppCompatActivity implements LoaderManager.Loader
     private int selectedId;
     private String username;
     private String password;
+    private String name;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.login_view);
         loginMessageTextView =(TextView) findViewById(R.id.login_screen_textview);
         businessExchangeTextView = (TextView) findViewById(R.id.business_exchange_textView);
         appLogoImageView =(ImageView) findViewById(R.id.app_logo_image_view);
@@ -58,12 +66,15 @@ public class LoginView extends AppCompatActivity implements LoaderManager.Loader
         progressBar = (ProgressBar) findViewById(R.id.login_progress_bar);
         loginButton =(Button) findViewById(R.id.login_view_button_login);
         selectedId = getIntent().getIntExtra("selectedId",-1);
-        if(selectedId==1)
-        mRef =  FirebaseDatabase.getInstance().getReference(DbUrls.BASE_URL+DbUrls.USER_LOGIN_DETAILS);
-        else
-            mRef = FirebaseDatabase.getInstance().getReference(DbUrls.BASE_URL+DbUrls.PROFESSIONAL_LOGIN_DETAILS);
-
-        loginFirebaseHelper = new FirebaseHelper(mRef);
+        if(selectedId==1) {
+            mRef = FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseUrls.BASE_URL + FirebaseUrls.USER_LOGIN_DETAILS);
+            db=FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseUrls.BASE_URL+FirebaseUrls.USER_DETAILS);
+        }
+        else if(selectedId==0){
+            mRef = FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseUrls.BASE_URL+FirebaseUrls.PROFESSIONAL_LOGIN_DETAILS);
+            db=FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseUrls.BASE_URL+FirebaseUrls.PROFESSIONAL_DETAILS);
+        }
+            loginFirebaseHelper = new FirebaseHelper(mRef);
     }
 
     @Override
@@ -93,7 +104,6 @@ public class LoginView extends AppCompatActivity implements LoaderManager.Loader
                     isLoginSuccessful=true;
                     userId=credentials.getId();
                 }
-
         }
         loginCheck(isLoginSuccessful);
     }
@@ -107,18 +117,55 @@ public class LoginView extends AppCompatActivity implements LoaderManager.Loader
         if(!isLoginSuccessful)
             Toast.makeText(this, "username / password mismatch", Toast.LENGTH_SHORT).show();
         else if(selectedId==0) {
+            name = fetchUserName();
             Intent intent = new Intent(this, ProfessionalDashboard.class);
+            intent.putExtra("name",name);
             intent.putExtra("userId",userId);
             this.startActivity(intent);
         }
         else if(selectedId==1){
+            name = fetchUserName();
             Intent intent = new Intent(this, UserDashboard.class);
+            intent.putExtra("name",name);
             intent.putExtra("userId",userId);
             this.startActivity(intent);
         }
     }
     public void signUp(View view){
-        Intent intent = new Intent(this, SignUpView.class);
+        Intent intent = new Intent(this, ProfessionalSignUp.class);
         this.startActivity(intent);
+    }
+    public String fetchUserName(){
+        String name=null;
+        Query getIdQuery = db.child("id").equalTo(userId);
+        getIdQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                getUserName(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return name;
+    }
+
+    public String getUserName(DataSnapshot dataSnapshot){
+        String name=null;
+        for (DataSnapshot ds : dataSnapshot.getChildren())
+        {
+            if(selectedId==0) {
+                ProfessionalData professionalData = ds.getValue(ProfessionalData.class);
+                name = professionalData.getFirstName() + " " + professionalData.getLastName();
+            }
+            else if(selectedId==1) {
+                UserData userData = ds.getValue(UserData.class);
+                name = userData.getFirstName() + " " + userData.getLastName();
+            }
+            Log.i("finally i got id: ----",name);
+        }
+        return name;
     }
 }

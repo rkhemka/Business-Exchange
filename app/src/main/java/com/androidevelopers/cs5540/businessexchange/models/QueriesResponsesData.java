@@ -4,19 +4,22 @@ package com.androidevelopers.cs5540.businessexchange.models;
  * Created by rohangoel on 8/6/17.
  */
 
-public class ProfessionalMessage {
+public class QueriesResponsesData {
 
     private int professionalId;
     private int userId;
     private String message;
 
-    public ProfessionalMessage() {
+
+    public QueriesResponsesData() {
     }
 
-    public ProfessionalMessage(int professionalId, int userId, String message) {
+    public QueriesResponsesData(int professionalId, int userId, String message, String username) {
         this.professionalId = professionalId;
         this.userId = userId;
         this.message = message;
+//        this.username = username;
+
     }
 
     public int getProfessionalId() {
@@ -42,4 +45,12 @@ public class ProfessionalMessage {
     public void setMessage(String message) {
         this.message = message;
     }
+
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
 }

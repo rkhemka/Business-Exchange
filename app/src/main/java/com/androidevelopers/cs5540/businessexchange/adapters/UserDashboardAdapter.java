@@ -1,7 +1,6 @@
 package com.androidevelopers.cs5540.businessexchange.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,10 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidevelopers.cs5540.businessexchange.R;
-import com.androidevelopers.cs5540.businessexchange.activity.ProfessionalViewLayout;
 import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
 import com.squareup.picasso.Picasso;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -24,12 +21,20 @@ import java.util.ArrayList;
 
 // Adapter for User Dash Board.. List of Professionals will be Attached to Recycler View.
 
-public class UserDashboardAdpater extends RecyclerView.Adapter<UserDashboardAdpater.UserDashboardViewHolder> {
+public class UserDashboardAdapter extends RecyclerView.Adapter<UserDashboardAdapter.UserDashboardViewHolder> {
+
+    private UserDashboardItemClickListener listener;
     ArrayList<ProfessionalData> professionals ;
     Context context;
-    public UserDashboardAdpater(ArrayList<ProfessionalData> professionals, Context context){
+
+    public UserDashboardAdapter(ArrayList<ProfessionalData> professionals, UserDashboardItemClickListener listener, Context context){
         this.professionals=professionals;
-        this.context=context;
+        this.context = context;
+        this.listener=listener;
+    }
+
+    public interface UserDashboardItemClickListener {
+        void onItemClick( int clickedItemIndex);
     }
 
     @Override
@@ -55,7 +60,6 @@ public class UserDashboardAdpater extends RecyclerView.Adapter<UserDashboardAdpa
     public int getItemCount() {
         Log.i("size from adater: ", String.valueOf(professionals.size()));
         return professionals.size();
-
     }
 
     public class UserDashboardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -65,25 +69,20 @@ public class UserDashboardAdpater extends RecyclerView.Adapter<UserDashboardAdpa
         TextView professionalProfession;
         ArrayList<ProfessionalData> professionals = new ArrayList<>();
         Context context;
-        public UserDashboardViewHolder(View itemView, Context context, ArrayList<ProfessionalData>  professionals) {
+        public UserDashboardViewHolder(View itemView, Context context, ArrayList<ProfessionalData> professionals) {
             super(itemView);
             this.context=context;
             this.professionals=professionals;
-            professionalImage=(ImageView) itemView.findViewById(R.id.professional_image_item_view);
-            professionalName=(TextView) itemView.findViewById(R.id.professional_name_item_view);
-            professionalCity=(TextView) itemView.findViewById(R.id.professional_city_item_view);
-            professionalProfession=(TextView) itemView.findViewById(R.id.professional_profession_item_view);
+            professionalImage= (ImageView) itemView.findViewById(R.id.professional_image_item_view);
+            professionalName= (TextView) itemView.findViewById(R.id.professional_name_item_view);
+            professionalCity= (TextView) itemView.findViewById(R.id.professional_city_item_view);
+            professionalProfession= (TextView) itemView.findViewById(R.id.professional_profession_item_view);
         }
 
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            ProfessionalData professionalData = this.professionals.get(position);
-            Gson gS = new Gson();
-            String target = gS.toJson(professionalData);
-            Intent intent = new Intent(this.context, ProfessionalViewLayout.class);
-            intent.putExtra("professionalDataObject", target);
-            this.context.startActivity(intent);
+            listener.onItemClick(position);
         }
     }
 }

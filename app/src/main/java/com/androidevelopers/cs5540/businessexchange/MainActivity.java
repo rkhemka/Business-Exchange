@@ -1,76 +1,37 @@
 package com.androidevelopers.cs5540.businessexchange;
 
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
-import com.androidevelopers.cs5540.businessexchange.adapters.UserDashboardAdpater;
-import com.androidevelopers.cs5540.businessexchange.dbUtils.DbUrls;
-import com.androidevelopers.cs5540.businessexchange.dbUtils.FirebaseHelper;
-import com.androidevelopers.cs5540.businessexchange.models.ProfessionalData;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.androidevelopers.cs5540.businessexchange.activity.LoginOptionView;
 
+public class MainActivity extends AppCompatActivity {
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Void> {
-
-    private ProgressBar progressBar;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter userDashboardAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ImageView mainScreenImage;
-    private FirebaseHelper firebaseHelper;
-    private DatabaseReference mRef;
-    ArrayList<ProfessionalData> professionals = new ArrayList<ProfessionalData>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progressBar=(ProgressBar) findViewById(R.id.progressBar);
-        recyclerView = (RecyclerView) findViewById(R.id.user_dashboard_recycler);
-        mRef = FirebaseDatabase.getInstance().getReference(DbUrls.BASE_URL);
-        firebaseHelper = new FirebaseHelper(mRef);
-    }
+        mainScreenImage = (ImageView) findViewById(R.id.main_screen_image);
+        mainScreenImage.animate().alpha(1).setDuration(10000);
 
-    public Loader<Void> onCreateLoader(int id, final Bundle args) {
-        return new AsyncTaskLoader<Void>(this) {
+        Handler handler = new Handler();
 
+        handler.postDelayed(new Runnable() { 
             @Override
-            protected void onStartLoading() {
-                super.onStartLoading();
-                progressBar.setVisibility(View.VISIBLE);
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, LoginOptionView.class);
+                startActivity(intent);
             }
-            @Override
-            public Void loadInBackground() {
+        },50000);
 
-                return null;
-            }
-        };
-    }
 
-    @Override
-    public void onLoadFinished(Loader<Void> loader, Void data) {
-        progressBar.setVisibility(View.GONE);
-        userDashboardAdapter= new UserDashboardAdpater(firebaseHelper.retrieveProfessionals(),this);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(userDashboardAdapter);
 
     }
 
-    @Override
-    public void onLoaderReset(Loader<Void> loader) {
-    }
 
 
 //    Inflate in Profession Activity
